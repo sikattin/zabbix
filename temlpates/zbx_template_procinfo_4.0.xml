@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>4.0</version>
-    <date>2019-04-15T03:53:39Z</date>
+    <date>2019-04-16T23:21:59Z</date>
     <groups>
         <group>
             <name>Templates</name>
@@ -9,93 +9,23 @@
     </groups>
     <templates>
         <template>
-            <template>Template mem,cpu per processes</template>
-            <name>Template mem,cpu per processes</name>
-            <description>指定したプロセス毎のメモリ使用量・率、CPU使用率を取得するディスカバリルールを含んだテンプレート</description>
+            <template>Template procinfo</template>
+            <name>Template procinfo</name>
+            <description>processes info</description>
             <groups>
                 <group>
                     <name>Templates</name>
                 </group>
             </groups>
-            <applications>
-                <application>
-                    <name>CPU</name>
-                </application>
-                <application>
-                    <name>Memory</name>
-                </application>
-                <application>
-                    <name>Processnum</name>
-                </application>
-            </applications>
-            <items>
-                <item>
-                    <name>memory total</name>
-                    <type>0</type>
-                    <snmp_community/>
-                    <snmp_oid/>
-                    <key>vm.memory.size[total]</key>
-                    <delay>300</delay>
-                    <history>365d</history>
-                    <trends>365d</trends>
-                    <status>0</status>
-                    <value_type>3</value_type>
-                    <allowed_hosts/>
-                    <units>B</units>
-                    <snmpv3_contextname/>
-                    <snmpv3_securityname/>
-                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
-                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
-                    <snmpv3_authpassphrase/>
-                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
-                    <snmpv3_privpassphrase/>
-                    <params/>
-                    <ipmi_sensor/>
-                    <authtype>0</authtype>
-                    <username/>
-                    <password/>
-                    <publickey/>
-                    <privatekey/>
-                    <port/>
-                    <description/>
-                    <inventory_link>0</inventory_link>
-                    <applications>
-                        <application>
-                            <name>Memory</name>
-                        </application>
-                    </applications>
-                    <valuemap/>
-                    <logtimefmt/>
-                    <preprocessing/>
-                    <jmx_endpoint/>
-                    <timeout>3s</timeout>
-                    <url/>
-                    <query_fields/>
-                    <posts/>
-                    <status_codes>200</status_codes>
-                    <follow_redirects>1</follow_redirects>
-                    <post_type>0</post_type>
-                    <http_proxy/>
-                    <headers/>
-                    <retrieve_mode>0</retrieve_mode>
-                    <request_method>1</request_method>
-                    <output_format>0</output_format>
-                    <allow_traps>0</allow_traps>
-                    <ssl_cert_file/>
-                    <ssl_key_file/>
-                    <ssl_key_password/>
-                    <verify_peer>0</verify_peer>
-                    <verify_host>0</verify_host>
-                    <master_item/>
-                </item>
-            </items>
+            <applications/>
+            <items/>
             <discovery_rules>
                 <discovery_rule>
                     <name>プロセスごとの各種情報を取得する</name>
                     <type>0</type>
                     <snmp_community/>
                     <snmp_oid/>
-                    <key>procinfo.discovery[取得したいプロセス名のパターン]</key>
+                    <key>procinfo.discovery[processname_pattern]</key>
                     <delay>30s</delay>
                     <status>1</status>
                     <allowed_hosts/>
@@ -150,7 +80,7 @@
                             <publickey/>
                             <privatekey/>
                             <port/>
-                            <description>CPU使用率</description>
+                            <description>物理メモリ使用量(RSS)</description>
                             <inventory_link>0</inventory_link>
                             <applications/>
                             <valuemap/>
@@ -391,7 +321,7 @@ last(&quot;vm.memory.size[total]&quot;))*100</params>
                             <publickey/>
                             <privatekey/>
                             <port/>
-                            <description>プロセス数 state=all</description>
+                            <description>物理メモリ使用量(RSS)</description>
                             <inventory_link>0</inventory_link>
                             <applications/>
                             <valuemap/>
@@ -418,7 +348,7 @@ last(&quot;vm.memory.size[total]&quot;))*100</params>
                             <verify_host>0</verify_host>
                             <application_prototypes>
                                 <application_prototype>
-                                    <name>Processnum</name>
+                                    <name>プロセス監視</name>
                                 </application_prototype>
                             </application_prototypes>
                             <master_item/>
@@ -451,7 +381,7 @@ last(&quot;vm.memory.size[total]&quot;))*100</params>
                             <publickey/>
                             <privatekey/>
                             <port/>
-                            <description>zombieプロセス数</description>
+                            <description>物理メモリ使用量(RSS)</description>
                             <inventory_link>0</inventory_link>
                             <applications/>
                             <valuemap/>
@@ -478,7 +408,7 @@ last(&quot;vm.memory.size[total]&quot;))*100</params>
                             <verify_host>0</verify_host>
                             <application_prototypes>
                                 <application_prototype>
-                                    <name>Processnum</name>
+                                    <name>プロセス監視</name>
                                 </application_prototype>
                             </application_prototypes>
                             <master_item/>
@@ -497,7 +427,7 @@ last(&quot;vm.memory.size[total]&quot;))*100</params>
                             <type>0</type>
                             <show_legend>1</show_legend>
                             <show_3d>0</show_3d>
-                            <percent_left>0.0000</percent_left>
+                            <percent_left>80.0000</percent_left>
                             <percent_right>0.0000</percent_right>
                             <ymin_type_1>0</ymin_type_1>
                             <ymax_type_1>0</ymax_type_1>
@@ -512,7 +442,7 @@ last(&quot;vm.memory.size[total]&quot;))*100</params>
                                     <calc_fnc>2</calc_fnc>
                                     <type>0</type>
                                     <item>
-                                        <host>Template mem,cpu per processes</host>
+                                        <host>Template procinfo</host>
                                         <key>proc.cpu.util[{#PROCNAME},,,{#PROCARG}]</key>
                                     </item>
                                 </graph_item>
@@ -529,7 +459,7 @@ last(&quot;vm.memory.size[total]&quot;))*100</params>
                             <type>0</type>
                             <show_legend>1</show_legend>
                             <show_3d>0</show_3d>
-                            <percent_left>0.0000</percent_left>
+                            <percent_left>90.0000</percent_left>
                             <percent_right>0.0000</percent_right>
                             <ymin_type_1>0</ymin_type_1>
                             <ymax_type_1>0</ymax_type_1>
@@ -544,7 +474,7 @@ last(&quot;vm.memory.size[total]&quot;))*100</params>
                                     <calc_fnc>2</calc_fnc>
                                     <type>0</type>
                                     <item>
-                                        <host>Template mem,cpu per processes</host>
+                                        <host>Template procinfo</host>
                                         <key>proc.mem[{#PROCNAME},,avg,{#PROCARG},rss]</key>
                                     </item>
                                 </graph_item>
@@ -561,7 +491,7 @@ last(&quot;vm.memory.size[total]&quot;))*100</params>
                             <type>0</type>
                             <show_legend>1</show_legend>
                             <show_3d>0</show_3d>
-                            <percent_left>0.0000</percent_left>
+                            <percent_left>90.0000</percent_left>
                             <percent_right>0.0000</percent_right>
                             <ymin_type_1>0</ymin_type_1>
                             <ymax_type_1>0</ymax_type_1>
@@ -576,7 +506,7 @@ last(&quot;vm.memory.size[total]&quot;))*100</params>
                                     <calc_fnc>2</calc_fnc>
                                     <type>0</type>
                                     <item>
-                                        <host>Template mem,cpu per processes</host>
+                                        <host>Template procinfo</host>
                                         <key>proc.mem[{#PROCNAME}_{#PROCARG}]</key>
                                     </item>
                                 </graph_item>
@@ -593,7 +523,7 @@ last(&quot;vm.memory.size[total]&quot;))*100</params>
                             <type>0</type>
                             <show_legend>1</show_legend>
                             <show_3d>0</show_3d>
-                            <percent_left>0.0000</percent_left>
+                            <percent_left>90.0000</percent_left>
                             <percent_right>0.0000</percent_right>
                             <ymin_type_1>0</ymin_type_1>
                             <ymax_type_1>0</ymax_type_1>
@@ -608,7 +538,7 @@ last(&quot;vm.memory.size[total]&quot;))*100</params>
                                     <calc_fnc>4</calc_fnc>
                                     <type>0</type>
                                     <item>
-                                        <host>Template mem,cpu per processes</host>
+                                        <host>Template procinfo</host>
                                         <key>proc.mem[{#PROCNAME},,max,{#PROCARG},rss]</key>
                                     </item>
                                 </graph_item>
@@ -640,7 +570,7 @@ last(&quot;vm.memory.size[total]&quot;))*100</params>
                                     <calc_fnc>2</calc_fnc>
                                     <type>0</type>
                                     <item>
-                                        <host>Template mem,cpu per processes</host>
+                                        <host>Template procinfo</host>
                                         <key>proc.num[{#PROCNAME},,,{#PROCARG}]</key>
                                     </item>
                                 </graph_item>
@@ -672,7 +602,7 @@ last(&quot;vm.memory.size[total]&quot;))*100</params>
                                     <calc_fnc>2</calc_fnc>
                                     <type>0</type>
                                     <item>
-                                        <host>Template mem,cpu per processes</host>
+                                        <host>Template procinfo</host>
                                         <key>proc.num[{#PROCNAME},,zomb,{#PROCARG}]</key>
                                     </item>
                                 </graph_item>
@@ -706,54 +636,4 @@ last(&quot;vm.memory.size[total]&quot;))*100</params>
             <screens/>
         </template>
     </templates>
-    <triggers>
-        <trigger>
-            <expression>{Template mem,cpu per processes:vm.memory.size[(total-available)/total].last(#1)}&gt;80</expression>
-            <recovery_mode>0</recovery_mode>
-            <recovery_expression/>
-            <name>{HOST.NAME} の メモリ使用率が80%に達しました</name>
-            <correlation_mode>0</correlation_mode>
-            <correlation_tag/>
-            <url/>
-            <status>0</status>
-            <priority>1</priority>
-            <description/>
-            <type>0</type>
-            <manual_close>1</manual_close>
-            <dependencies/>
-            <tags/>
-        </trigger>
-        <trigger>
-            <expression>{Template mem,cpu per processes:vm.memory.size[(total-available)/total].last(#1)}&gt;90</expression>
-            <recovery_mode>0</recovery_mode>
-            <recovery_expression/>
-            <name>{HOST.NAME} の メモリ使用率が90%に達しました</name>
-            <correlation_mode>0</correlation_mode>
-            <correlation_tag/>
-            <url/>
-            <status>0</status>
-            <priority>2</priority>
-            <description/>
-            <type>0</type>
-            <manual_close>1</manual_close>
-            <dependencies/>
-            <tags/>
-        </trigger>
-        <trigger>
-            <expression>{Template mem,cpu per processes:vm.memory.size[(total-available)/total].last(#1)}=100</expression>
-            <recovery_mode>0</recovery_mode>
-            <recovery_expression/>
-            <name>{HOST.NAME} の メモリ使用率が100%に達しました</name>
-            <correlation_mode>0</correlation_mode>
-            <correlation_tag/>
-            <url/>
-            <status>0</status>
-            <priority>3</priority>
-            <description/>
-            <type>0</type>
-            <manual_close>1</manual_close>
-            <dependencies/>
-            <tags/>
-        </trigger>
-    </triggers>
 </zabbix_export>
