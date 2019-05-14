@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>4.0</version>
-    <date>2019-05-14T09:15:23Z</date>
+    <date>2019-05-14T09:48:39Z</date>
     <groups>
         <group>
             <name>Templates</name>
@@ -9,8 +9,8 @@
     </groups>
     <templates>
         <template>
-            <template>Linux Modules Network</template>
-            <name>Linux Modules Network</name>
+            <template>Modules Network</template>
+            <name>Modules Network</name>
             <description/>
             <groups>
                 <group>
@@ -83,7 +83,7 @@
                             <snmpv3_authpassphrase/>
                             <snmpv3_privprotocol>0</snmpv3_privprotocol>
                             <snmpv3_privpassphrase/>
-                            <params>last(&quot;net.if.in[{#DEVNAME}]&quot;)+last(&quot;net.if.out[{#DEVNAME}]&quot;)</params>
+                            <params>last(&quot;net.if.in[{#IFNAME}]&quot;)+last(&quot;net.if.out[{#IFNAME}]&quot;)</params>
                             <ipmi_sensor/>
                             <authtype>0</authtype>
                             <username/>
@@ -198,7 +198,7 @@
                             <type>15</type>
                             <snmp_community/>
                             <snmp_oid/>
-                            <key>net.if.inratio[{#DEVNAME}]</key>
+                            <key>net.if.inratio[{#IFNAME}]</key>
                             <delay>1m</delay>
                             <history>365d</history>
                             <trends>365d</trends>
@@ -213,7 +213,7 @@
                             <snmpv3_authpassphrase/>
                             <snmpv3_privprotocol>0</snmpv3_privprotocol>
                             <snmpv3_privpassphrase/>
-                            <params>100*last(&quot;net.if.in[{#DEVNAME}]&quot;)/(last(&quot;net.if.in[{#DEVNAME}]&quot;)+last(&quot;net.if.out[{#DEVNAME}]&quot;))</params>
+                            <params>100*last(&quot;net.if.in[{#IFNAME}]&quot;)/(last(&quot;net.if.in[{#IFNAME}]&quot;)+last(&quot;net.if.out[{#IFNAME}]&quot;))</params>
                             <ipmi_sensor/>
                             <authtype>0</authtype>
                             <username/>
@@ -588,7 +588,7 @@
                             <type>15</type>
                             <snmp_community/>
                             <snmp_oid/>
-                            <key>net.if.outratio[{#DEVNAME}]</key>
+                            <key>net.if.outratio[{#IFNAME}]</key>
                             <delay>1m</delay>
                             <history>365d</history>
                             <trends>365d</trends>
@@ -603,7 +603,7 @@
                             <snmpv3_authpassphrase/>
                             <snmpv3_privprotocol>0</snmpv3_privprotocol>
                             <snmpv3_privpassphrase/>
-                            <params>100*last(&quot;net.if.out[{#DEVNAME}]&quot;)/(last(&quot;net.if.in[{#DEVNAME}]&quot;)+last(&quot;net.if.out[{#DEVNAME}]&quot;))</params>
+                            <params>100*last(&quot;net.if.out[{#IFNAME}]&quot;)/(last(&quot;net.if.in[{#IFNAME}]&quot;)+last(&quot;net.if.out[{#IFNAME}]&quot;))</params>
                             <ipmi_sensor/>
                             <authtype>0</authtype>
                             <username/>
@@ -1277,7 +1277,7 @@
                                     <type>0</type>
                                     <item>
                                         <host>AR Modules Network</host>
-                                        <key>net.if.inratio[{#DEVNAME}]</key>
+                                        <key>net.if.inratio[{#IFNAME}]</key>
                                     </item>
                                 </graph_item>
                                 <graph_item>
@@ -1289,7 +1289,7 @@
                                     <type>0</type>
                                     <item>
                                         <host>AR Modules Network</host>
-                                        <key>net.if.outratio[{#DEVNAME}]</key>
+                                        <key>net.if.outratio[{#IFNAME}]</key>
                                     </item>
                                 </graph_item>
                             </graph_items>
