@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>4.0</version>
-    <date>2019-04-17T03:46:52Z</date>
+    <date>2019-05-14T09:12:32Z</date>
     <groups>
         <group>
             <name>Templates</name>
@@ -9,8 +9,8 @@
     </groups>
     <templates>
         <template>
-            <template>Template Disk</template>
-            <name>Template Disk</name>
+            <template>Linux Modules Disk</template>
+            <name>Linux Modules Disk</name>
             <description/>
             <groups>
                 <group>
@@ -30,7 +30,7 @@
                     <snmp_community/>
                     <snmp_oid/>
                     <key>vfs.dev.discovery</key>
-                    <delay>5m</delay>
+                    <delay>3h</delay>
                     <status>1</status>
                     <allowed_hosts/>
                     <snmpv3_contextname/>
@@ -76,7 +76,7 @@
                             <snmpv3_authpassphrase/>
                             <snmpv3_privprotocol>0</snmpv3_privprotocol>
                             <snmpv3_privpassphrase/>
-                            <params>last(&quot;vfs.dev.read[{#DEVNAME},ops]&quot;,0)+last(&quot;vfs.dev.write[{#DEVNAME},ops]&quot;,0)</params>
+                            <params>last(&quot;vfs.dev.read[#{DEVNAME},ops]&quot;,0)+last(&quot;vfs.dev.write[#{DEVNAME},ops]&quot;,0)</params>
                             <ipmi_sensor/>
                             <authtype>0</authtype>
                             <username/>
@@ -249,7 +249,7 @@
                     </item_prototypes>
                     <trigger_prototypes>
                         <trigger_prototype>
-                            <expression>{Template Disk:vfs.dev.iops[{#DEVNAME}].last()}&gt;{$IOPS_INFO}</expression>
+                            <expression>{AR Modules Disk:vfs.dev.iops[{#DEVNAME}].last()}&gt;{$IOPS_INFO}</expression>
                             <recovery_mode>0</recovery_mode>
                             <recovery_expression/>
                             <name>{HOST.NAME} の ディスク {#DEVNAME} の iops が {$IOPS_INFO} を超過しました</name>
@@ -292,7 +292,7 @@
                                     <calc_fnc>2</calc_fnc>
                                     <type>0</type>
                                     <item>
-                                        <host>Template Disk</host>
+                                        <host>AR Modules Disk</host>
                                         <key>vfs.dev.iops[{#DEVNAME}]</key>
                                     </item>
                                 </graph_item>
@@ -325,7 +325,7 @@
                     <snmp_community/>
                     <snmp_oid/>
                     <key>vfs.fs.discovery</key>
-                    <delay>10m</delay>
+                    <delay>3h</delay>
                     <status>0</status>
                     <allowed_hosts/>
                     <snmpv3_contextname/>
@@ -757,7 +757,7 @@
                     </item_prototypes>
                     <trigger_prototypes>
                         <trigger_prototype>
-                            <expression>{Template Disk:vfs.fs.inode[{#FSNAME},pfree].last(0)}&lt;20</expression>
+                            <expression>{AR Modules Disk:vfs.fs.inode[{#FSNAME},pfree].last(0)}&lt;20</expression>
                             <recovery_mode>0</recovery_mode>
                             <recovery_expression/>
                             <name>[ inode: {#FSNAME} ] Free inodes {ITEM.VALUE}% (&lt; 20%)</name>
@@ -774,7 +774,7 @@
                             <tags/>
                         </trigger_prototype>
                         <trigger_prototype>
-                            <expression>{Template Disk:vfs.fs.size[{#FSNAME},pused].forecast(1h,,3d,linear,max)}&gt;99</expression>
+                            <expression>{AR Modules Disk:vfs.fs.size[{#FSNAME},pused].forecast(1h,,3d,linear,max)}&gt;99</expression>
                             <recovery_mode>0</recovery_mode>
                             <recovery_expression/>
                             <name>{HOST.NAME} のディスク {#FSNAME} のディスク使用率が３日後に99％を超過する予測です。</name>
@@ -795,7 +795,7 @@
                             <tags/>
                         </trigger_prototype>
                         <trigger_prototype>
-                            <expression>{Template Disk:vfs.fs.size[{#FSNAME},pused].min(#1)}&lt;{$DISKUSED_CRITICAL}</expression>
+                            <expression>{AR Modules Disk:vfs.fs.size[{#FSNAME},pused].min(#1)}&gt;{$DISKUSED_CRITICAL}</expression>
                             <recovery_mode>0</recovery_mode>
                             <recovery_expression/>
                             <name>{HOST.NAME} のディスク {#FSNAME} の使用率が{$DISKUSED_CRITICAL}%を超過しました</name>
@@ -815,7 +815,7 @@
                             <tags/>
                         </trigger_prototype>
                         <trigger_prototype>
-                            <expression>{Template Disk:vfs.fs.size[{#FSNAME},pused].min(#2)}&lt;{$DISKUSED_INFO}</expression>
+                            <expression>{AR Modules Disk:vfs.fs.size[{#FSNAME},pused].min(#2)}&gt;{$DISKUSED_INFO}</expression>
                             <recovery_mode>0</recovery_mode>
                             <recovery_expression/>
                             <name>{HOST.NAME} のディスク {#FSNAME} の使用率が{$DISKUSED_INFO}%を超過しました</name>
@@ -835,7 +835,7 @@
                             <tags/>
                         </trigger_prototype>
                         <trigger_prototype>
-                            <expression>{Template Disk:vfs.fs.size[{#FSNAME},pused].min(#2)}&lt;{$DISKUSED_WARNING}</expression>
+                            <expression>{AR Modules Disk:vfs.fs.size[{#FSNAME},pused].min(#2)}&gt;{$DISKUSED_WARNING}</expression>
                             <recovery_mode>0</recovery_mode>
                             <recovery_expression/>
                             <name>{HOST.NAME} のディスク {#FSNAME} の使用率が{$DISKUSED_WARNING}%を超過しました</name>
@@ -882,7 +882,7 @@
                                     <calc_fnc>2</calc_fnc>
                                     <type>2</type>
                                     <item>
-                                        <host>Template Disk</host>
+                                        <host>AR Modules Disk</host>
                                         <key>vfs.fs.size[{#FSNAME},used]</key>
                                     </item>
                                 </graph_item>
@@ -894,7 +894,7 @@
                                     <calc_fnc>2</calc_fnc>
                                     <type>0</type>
                                     <item>
-                                        <host>Template Disk</host>
+                                        <host>AR Modules Disk</host>
                                         <key>vfs.fs.size[{#FSNAME},free]</key>
                                     </item>
                                 </graph_item>
@@ -942,7 +942,7 @@
                 </macro>
                 <macro>
                     <macro>{$IOPS_INFO}</macro>
-                    <value>100</value>
+                    <value>500</value>
                 </macro>
             </macros>
             <templates/>

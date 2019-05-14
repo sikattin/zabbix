@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>4.0</version>
-    <date>2019-04-17T06:11:06Z</date>
+    <date>2019-05-14T09:15:23Z</date>
     <groups>
         <group>
             <name>Templates</name>
@@ -9,8 +9,8 @@
     </groups>
     <templates>
         <template>
-            <template>Template network</template>
-            <name>Template network</name>
+            <template>Linux Modules Network</template>
+            <name>Linux Modules Network</name>
             <description/>
             <groups>
                 <group>
@@ -1041,10 +1041,10 @@
                     </item_prototypes>
                     <trigger_prototypes>
                         <trigger_prototype>
-                            <expression>{Template network:net.if.in[{#IFNAME}].min(#2)}&gt;100M</expression>
+                            <expression>{AR Modules Network:net.if.in[{#IFNAME}].min(#2)}&gt;100M</expression>
                             <recovery_mode>0</recovery_mode>
                             <recovery_expression/>
-                            <name>{HOST.NAME} の {#IFNAME} の ネットワークトラフィック量(IN)が100MBps を超過しています</name>
+                            <name>{HOST.NAME} の {#IFNAME} の ネットワークトラフィック量(IN)が{$INFO_TRAFFIC}MBps を超過しています</name>
                             <correlation_mode>0</correlation_mode>
                             <correlation_tag/>
                             <url/>
@@ -1057,10 +1057,10 @@
                             <tags/>
                         </trigger_prototype>
                         <trigger_prototype>
-                            <expression>{Template network:net.if.out[{#IFNAME}].min(#2)}&gt;100M</expression>
+                            <expression>{AR Modules Network:net.if.out[{#IFNAME}].min(#2)}&gt;100M</expression>
                             <recovery_mode>0</recovery_mode>
                             <recovery_expression/>
-                            <name>{HOST.NAME} の {#IFNAME} の ネットワークトラフィック量(OUT)が100MBps を超過しています</name>
+                            <name>{HOST.NAME} の {#IFNAME} の ネットワークトラフィック量(OUT)が{$INFO_TRAFFIC}MBps を超過しています</name>
                             <correlation_mode>0</correlation_mode>
                             <correlation_tag/>
                             <url/>
@@ -1100,7 +1100,7 @@
                                     <calc_fnc>2</calc_fnc>
                                     <type>0</type>
                                     <item>
-                                        <host>Template network</host>
+                                        <host>AR Modules Network</host>
                                         <key>net.if.in[{#IFNAME},errors]</key>
                                     </item>
                                 </graph_item>
@@ -1112,7 +1112,7 @@
                                     <calc_fnc>2</calc_fnc>
                                     <type>0</type>
                                     <item>
-                                        <host>Template network</host>
+                                        <host>AR Modules Network</host>
                                         <key>net.if.out[{#IFNAME},errors]</key>
                                     </item>
                                 </graph_item>
@@ -1144,7 +1144,7 @@
                                     <calc_fnc>2</calc_fnc>
                                     <type>0</type>
                                     <item>
-                                        <host>Template network</host>
+                                        <host>AR Modules Network</host>
                                         <key>net.if.in[{#IFNAME},dropped]</key>
                                     </item>
                                 </graph_item>
@@ -1156,7 +1156,7 @@
                                     <calc_fnc>2</calc_fnc>
                                     <type>0</type>
                                     <item>
-                                        <host>Template network</host>
+                                        <host>AR Modules Network</host>
                                         <key>net.if.out[{#IFNAME},dropped]</key>
                                     </item>
                                 </graph_item>
@@ -1188,7 +1188,7 @@
                                     <calc_fnc>2</calc_fnc>
                                     <type>0</type>
                                     <item>
-                                        <host>Template network</host>
+                                        <host>AR Modules Network</host>
                                         <key>net.if.in[{#IFNAME},packets]</key>
                                     </item>
                                 </graph_item>
@@ -1200,7 +1200,7 @@
                                     <calc_fnc>2</calc_fnc>
                                     <type>0</type>
                                     <item>
-                                        <host>Template network</host>
+                                        <host>AR Modules Network</host>
                                         <key>net.if.out[{#IFNAME},packets]</key>
                                     </item>
                                 </graph_item>
@@ -1232,7 +1232,7 @@
                                     <calc_fnc>2</calc_fnc>
                                     <type>0</type>
                                     <item>
-                                        <host>Template network</host>
+                                        <host>AR Modules Network</host>
                                         <key>net.if.in[{#IFNAME}]</key>
                                     </item>
                                 </graph_item>
@@ -1244,7 +1244,7 @@
                                     <calc_fnc>2</calc_fnc>
                                     <type>0</type>
                                     <item>
-                                        <host>Template network</host>
+                                        <host>AR Modules Network</host>
                                         <key>net.if.out[{#IFNAME}]</key>
                                     </item>
                                 </graph_item>
@@ -1276,7 +1276,7 @@
                                     <calc_fnc>2</calc_fnc>
                                     <type>0</type>
                                     <item>
-                                        <host>Template network</host>
+                                        <host>AR Modules Network</host>
                                         <key>net.if.inratio[{#DEVNAME}]</key>
                                     </item>
                                 </graph_item>
@@ -1288,7 +1288,7 @@
                                     <calc_fnc>2</calc_fnc>
                                     <type>0</type>
                                     <item>
-                                        <host>Template network</host>
+                                        <host>AR Modules Network</host>
                                         <key>net.if.outratio[{#DEVNAME}]</key>
                                     </item>
                                 </graph_item>
@@ -1317,7 +1317,12 @@
                 </discovery_rule>
             </discovery_rules>
             <httptests/>
-            <macros/>
+            <macros>
+                <macro>
+                    <macro>{$INFO_TRAFFIC}</macro>
+                    <value>100</value>
+                </macro>
+            </macros>
             <templates/>
             <screens/>
         </template>
