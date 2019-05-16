@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>4.0</version>
-    <date>2019-04-16T23:21:59Z</date>
+    <date>2019-05-16T02:31:04Z</date>
     <groups>
         <group>
             <name>Templates</name>
@@ -25,8 +25,8 @@
                     <type>0</type>
                     <snmp_community/>
                     <snmp_oid/>
-                    <key>procinfo.discovery[processname_pattern]</key>
-                    <delay>30s</delay>
+                    <key>procinfo.discovery[df_]</key>
+                    <delay>10m</delay>
                     <status>1</status>
                     <allowed_hosts/>
                     <snmpv3_contextname/>
@@ -49,7 +49,7 @@
                         <formula/>
                         <conditions/>
                     </filter>
-                    <lifetime>30d</lifetime>
+                    <lifetime>12h</lifetime>
                     <description/>
                     <item_prototypes>
                         <item_prototype>
@@ -106,6 +106,9 @@
                             <verify_peer>0</verify_peer>
                             <verify_host>0</verify_host>
                             <application_prototypes>
+                                <application_prototype>
+                                    <name>CPU</name>
+                                </application_prototype>
                                 <application_prototype>
                                     <name>CPU</name>
                                 </application_prototype>
@@ -169,6 +172,9 @@
                                 <application_prototype>
                                     <name>Memory</name>
                                 </application_prototype>
+                                <application_prototype>
+                                    <name>Memory</name>
+                                </application_prototype>
                             </application_prototypes>
                             <master_item/>
                         </item_prototype>
@@ -226,6 +232,9 @@
                             <verify_peer>0</verify_peer>
                             <verify_host>0</verify_host>
                             <application_prototypes>
+                                <application_prototype>
+                                    <name>Memory</name>
+                                </application_prototype>
                                 <application_prototype>
                                     <name>Memory</name>
                                 </application_prototype>
@@ -290,6 +299,9 @@ last(&quot;vm.memory.size[total]&quot;))*100</params>
                                 <application_prototype>
                                     <name>Memory</name>
                                 </application_prototype>
+                                <application_prototype>
+                                    <name>Memory</name>
+                                </application_prototype>
                             </application_prototypes>
                             <master_item/>
                         </item_prototype>
@@ -347,6 +359,9 @@ last(&quot;vm.memory.size[total]&quot;))*100</params>
                             <verify_peer>0</verify_peer>
                             <verify_host>0</verify_host>
                             <application_prototypes>
+                                <application_prototype>
+                                    <name>プロセス監視</name>
+                                </application_prototype>
                                 <application_prototype>
                                     <name>プロセス監視</name>
                                 </application_prototype>
@@ -410,11 +425,211 @@ last(&quot;vm.memory.size[total]&quot;))*100</params>
                                 <application_prototype>
                                     <name>プロセス監視</name>
                                 </application_prototype>
+                                <application_prototype>
+                                    <name>プロセス監視</name>
+                                </application_prototype>
+                            </application_prototypes>
+                            <master_item/>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Open file descriptors {#PROCNAME} {#PROCARG}</name>
+                            <type>0</type>
+                            <snmp_community/>
+                            <snmp_oid/>
+                            <key>procinfo.fd[{#PROCNAME},{#PROCARG}]</key>
+                            <delay>30s</delay>
+                            <history>90d</history>
+                            <trends>0</trends>
+                            <status>0</status>
+                            <value_type>1</value_type>
+                            <allowed_hosts/>
+                            <units/>
+                            <snmpv3_contextname/>
+                            <snmpv3_securityname/>
+                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                            <snmpv3_authpassphrase/>
+                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                            <snmpv3_privpassphrase/>
+                            <params/>
+                            <ipmi_sensor/>
+                            <authtype>0</authtype>
+                            <username/>
+                            <password/>
+                            <publickey/>
+                            <privatekey/>
+                            <port/>
+                            <description/>
+                            <inventory_link>0</inventory_link>
+                            <applications/>
+                            <valuemap/>
+                            <logtimefmt/>
+                            <preprocessing/>
+                            <jmx_endpoint/>
+                            <timeout>3s</timeout>
+                            <url/>
+                            <query_fields/>
+                            <posts/>
+                            <status_codes>200</status_codes>
+                            <follow_redirects>1</follow_redirects>
+                            <post_type>0</post_type>
+                            <http_proxy/>
+                            <headers/>
+                            <retrieve_mode>0</retrieve_mode>
+                            <request_method>0</request_method>
+                            <output_format>0</output_format>
+                            <allow_traps>0</allow_traps>
+                            <ssl_cert_file/>
+                            <ssl_key_file/>
+                            <ssl_key_password/>
+                            <verify_peer>0</verify_peer>
+                            <verify_host>0</verify_host>
+                            <application_prototypes>
+                                <application_prototype>
+                                    <name>プロセス監視</name>
+                                </application_prototype>
+                            </application_prototypes>
+                            <master_item/>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Max Open files {#PROCNAME} {#PROCARG}</name>
+                            <type>0</type>
+                            <snmp_community/>
+                            <snmp_oid/>
+                            <key>procinfo.limits.mof[{#PROCNAME},{#PROCARG}]</key>
+                            <delay>30s</delay>
+                            <history>90d</history>
+                            <trends>0</trends>
+                            <status>0</status>
+                            <value_type>1</value_type>
+                            <allowed_hosts/>
+                            <units/>
+                            <snmpv3_contextname/>
+                            <snmpv3_securityname/>
+                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                            <snmpv3_authpassphrase/>
+                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                            <snmpv3_privpassphrase/>
+                            <params/>
+                            <ipmi_sensor/>
+                            <authtype>0</authtype>
+                            <username/>
+                            <password/>
+                            <publickey/>
+                            <privatekey/>
+                            <port/>
+                            <description/>
+                            <inventory_link>0</inventory_link>
+                            <applications/>
+                            <valuemap/>
+                            <logtimefmt/>
+                            <preprocessing/>
+                            <jmx_endpoint/>
+                            <timeout>3s</timeout>
+                            <url/>
+                            <query_fields/>
+                            <posts/>
+                            <status_codes>200</status_codes>
+                            <follow_redirects>1</follow_redirects>
+                            <post_type>0</post_type>
+                            <http_proxy/>
+                            <headers/>
+                            <retrieve_mode>0</retrieve_mode>
+                            <request_method>0</request_method>
+                            <output_format>0</output_format>
+                            <allow_traps>0</allow_traps>
+                            <ssl_cert_file/>
+                            <ssl_key_file/>
+                            <ssl_key_password/>
+                            <verify_peer>0</verify_peer>
+                            <verify_host>0</verify_host>
+                            <application_prototypes>
+                                <application_prototype>
+                                    <name>プロセス監視</name>
+                                </application_prototype>
+                            </application_prototypes>
+                            <master_item/>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Open files ratio {#PROCNAME} {#PROCARG}</name>
+                            <type>15</type>
+                            <snmp_community/>
+                            <snmp_oid/>
+                            <key>procinfo.openfiles[{#PROCNAME},{#PROCARG}]</key>
+                            <delay>30s</delay>
+                            <history>90d</history>
+                            <trends>365d</trends>
+                            <status>0</status>
+                            <value_type>3</value_type>
+                            <allowed_hosts/>
+                            <units>%</units>
+                            <snmpv3_contextname/>
+                            <snmpv3_securityname/>
+                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                            <snmpv3_authpassphrase/>
+                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                            <snmpv3_privpassphrase/>
+                            <params>(last(&quot;procinfo.fd[{#PROCNAME},{#PROCARG}]&quot;)/last(&quot;procinfo.limits.mof[{#PROCNAME},{#PROCARG}]&quot;))*100</params>
+                            <ipmi_sensor/>
+                            <authtype>0</authtype>
+                            <username/>
+                            <password/>
+                            <publickey/>
+                            <privatekey/>
+                            <port/>
+                            <description/>
+                            <inventory_link>0</inventory_link>
+                            <applications/>
+                            <valuemap/>
+                            <logtimefmt/>
+                            <preprocessing/>
+                            <jmx_endpoint/>
+                            <timeout>3s</timeout>
+                            <url/>
+                            <query_fields/>
+                            <posts/>
+                            <status_codes>200</status_codes>
+                            <follow_redirects>1</follow_redirects>
+                            <post_type>0</post_type>
+                            <http_proxy/>
+                            <headers/>
+                            <retrieve_mode>0</retrieve_mode>
+                            <request_method>0</request_method>
+                            <output_format>0</output_format>
+                            <allow_traps>0</allow_traps>
+                            <ssl_cert_file/>
+                            <ssl_key_file/>
+                            <ssl_key_password/>
+                            <verify_peer>0</verify_peer>
+                            <verify_host>0</verify_host>
+                            <application_prototypes>
+                                <application_prototype>
+                                    <name>プロセス監視</name>
+                                </application_prototype>
                             </application_prototypes>
                             <master_item/>
                         </item_prototype>
                     </item_prototypes>
-                    <trigger_prototypes/>
+                    <trigger_prototypes>
+                        <trigger_prototype>
+                            <expression>{Template procinfo:procinfo.openfiles[{#PROCNAME},{#PROCARG}].last()}&gt;{$INFO_OF}</expression>
+                            <recovery_mode>0</recovery_mode>
+                            <recovery_expression/>
+                            <name>Open files {$INFO_OF}% overed {#PROCNAME} {#PROCARG}</name>
+                            <correlation_mode>0</correlation_mode>
+                            <correlation_tag/>
+                            <url/>
+                            <status>0</status>
+                            <priority>1</priority>
+                            <description/>
+                            <type>0</type>
+                            <manual_close>0</manual_close>
+                            <dependencies/>
+                            <tags/>
+                        </trigger_prototype>
+                    </trigger_prototypes>
                     <graph_prototypes>
                         <graph_prototype>
                             <name>cpu util total {#PROCNAME} {#PROCARG}</name>
@@ -629,9 +844,68 @@ last(&quot;vm.memory.size[total]&quot;))*100</params>
                     <verify_peer>0</verify_peer>
                     <verify_host>0</verify_host>
                 </discovery_rule>
+                <discovery_rule>
+                    <name>プロセスごとの各種情報を取得する</name>
+                    <type>0</type>
+                    <snmp_community/>
+                    <snmp_oid/>
+                    <key>procinfo.discovery[processname_pattern]</key>
+                    <delay>30s</delay>
+                    <status>1</status>
+                    <allowed_hosts/>
+                    <snmpv3_contextname/>
+                    <snmpv3_securityname/>
+                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                    <snmpv3_authpassphrase/>
+                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                    <snmpv3_privpassphrase/>
+                    <params/>
+                    <ipmi_sensor/>
+                    <authtype>0</authtype>
+                    <username/>
+                    <password/>
+                    <publickey/>
+                    <privatekey/>
+                    <port/>
+                    <filter>
+                        <evaltype>0</evaltype>
+                        <formula/>
+                        <conditions/>
+                    </filter>
+                    <lifetime>30d</lifetime>
+                    <description/>
+                    <item_prototypes/>
+                    <trigger_prototypes/>
+                    <graph_prototypes/>
+                    <host_prototypes/>
+                    <jmx_endpoint/>
+                    <timeout>3s</timeout>
+                    <url/>
+                    <query_fields/>
+                    <posts/>
+                    <status_codes>200</status_codes>
+                    <follow_redirects>1</follow_redirects>
+                    <post_type>0</post_type>
+                    <http_proxy/>
+                    <headers/>
+                    <retrieve_mode>0</retrieve_mode>
+                    <request_method>0</request_method>
+                    <allow_traps>0</allow_traps>
+                    <ssl_cert_file/>
+                    <ssl_key_file/>
+                    <ssl_key_password/>
+                    <verify_peer>0</verify_peer>
+                    <verify_host>0</verify_host>
+                </discovery_rule>
             </discovery_rules>
             <httptests/>
-            <macros/>
+            <macros>
+                <macro>
+                    <macro>{$INFO_OF}</macro>
+                    <value>80</value>
+                </macro>
+            </macros>
             <templates/>
             <screens/>
         </template>
