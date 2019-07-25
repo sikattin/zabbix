@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>4.0</version>
-    <date>2019-05-16T02:31:04Z</date>
+    <date>2019-07-25T05:01:07Z</date>
     <groups>
         <group>
             <name>Templates</name>
@@ -9,8 +9,8 @@
     </groups>
     <templates>
         <template>
-            <template>Template procinfo</template>
-            <name>Template procinfo</name>
+            <template>Template proc</template>
+            <name>Template proc</name>
             <description>processes info</description>
             <groups>
                 <group>
@@ -21,13 +21,145 @@
             <items/>
             <discovery_rules>
                 <discovery_rule>
+                    <name>Discovery TCP LISTEN PORT {$PROC_NAME}</name>
+                    <type>0</type>
+                    <snmp_community/>
+                    <snmp_oid/>
+                    <key>proc.listentcp.discovery[{$PROC_NAME}]</key>
+                    <delay>60m</delay>
+                    <status>0</status>
+                    <allowed_hosts/>
+                    <snmpv3_contextname/>
+                    <snmpv3_securityname/>
+                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                    <snmpv3_authpassphrase/>
+                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                    <snmpv3_privpassphrase/>
+                    <params/>
+                    <ipmi_sensor/>
+                    <authtype>0</authtype>
+                    <username/>
+                    <password/>
+                    <publickey/>
+                    <privatekey/>
+                    <port/>
+                    <filter>
+                        <evaltype>0</evaltype>
+                        <formula/>
+                        <conditions/>
+                    </filter>
+                    <lifetime>30d</lifetime>
+                    <description/>
+                    <item_prototypes>
+                        <item_prototype>
+                            <name>TCP Port $2 {$PROC_NAME}</name>
+                            <type>0</type>
+                            <snmp_community/>
+                            <snmp_oid/>
+                            <key>net.tcp.port[{#PROCLISTENIP},{#PROCTCPLISTEN}]</key>
+                            <delay>300s</delay>
+                            <history>90d</history>
+                            <trends>365d</trends>
+                            <status>0</status>
+                            <value_type>3</value_type>
+                            <allowed_hosts/>
+                            <units/>
+                            <snmpv3_contextname/>
+                            <snmpv3_securityname/>
+                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                            <snmpv3_authpassphrase/>
+                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                            <snmpv3_privpassphrase/>
+                            <params/>
+                            <ipmi_sensor/>
+                            <authtype>0</authtype>
+                            <username/>
+                            <password/>
+                            <publickey/>
+                            <privatekey/>
+                            <port/>
+                            <description/>
+                            <inventory_link>0</inventory_link>
+                            <applications/>
+                            <valuemap/>
+                            <logtimefmt/>
+                            <preprocessing/>
+                            <jmx_endpoint/>
+                            <timeout>3s</timeout>
+                            <url/>
+                            <query_fields/>
+                            <posts/>
+                            <status_codes>200</status_codes>
+                            <follow_redirects>1</follow_redirects>
+                            <post_type>0</post_type>
+                            <http_proxy/>
+                            <headers/>
+                            <retrieve_mode>0</retrieve_mode>
+                            <request_method>0</request_method>
+                            <output_format>0</output_format>
+                            <allow_traps>0</allow_traps>
+                            <ssl_cert_file/>
+                            <ssl_key_file/>
+                            <ssl_key_password/>
+                            <verify_peer>0</verify_peer>
+                            <verify_host>0</verify_host>
+                            <application_prototypes>
+                                <application_prototype>
+                                    <name>TCP</name>
+                                </application_prototype>
+                            </application_prototypes>
+                            <master_item/>
+                        </item_prototype>
+                    </item_prototypes>
+                    <trigger_prototypes>
+                        <trigger_prototype>
+                            <expression>{Template proc:net.tcp.port[{#PROCLISTENIP},{#PROCTCPLISTEN}].last()}=0</expression>
+                            <recovery_mode>0</recovery_mode>
+                            <recovery_expression/>
+                            <name>{HOST.NAME} TCP port {#PROCTCPLISTEN} of {$PROC_NAME} is not connected</name>
+                            <correlation_mode>0</correlation_mode>
+                            <correlation_tag/>
+                            <url/>
+                            <status>0</status>
+                            <priority>4</priority>
+                            <description>Zabbix agent couldn't connect to TCP {#PROCTCPLISTEN} of {$PROC_NAME}</description>
+                            <type>0</type>
+                            <manual_close>0</manual_close>
+                            <dependencies/>
+                            <tags/>
+                        </trigger_prototype>
+                    </trigger_prototypes>
+                    <graph_prototypes/>
+                    <host_prototypes/>
+                    <jmx_endpoint/>
+                    <timeout>3s</timeout>
+                    <url/>
+                    <query_fields/>
+                    <posts/>
+                    <status_codes>200</status_codes>
+                    <follow_redirects>1</follow_redirects>
+                    <post_type>0</post_type>
+                    <http_proxy/>
+                    <headers/>
+                    <retrieve_mode>0</retrieve_mode>
+                    <request_method>0</request_method>
+                    <allow_traps>0</allow_traps>
+                    <ssl_cert_file/>
+                    <ssl_key_file/>
+                    <ssl_key_password/>
+                    <verify_peer>0</verify_peer>
+                    <verify_host>0</verify_host>
+                </discovery_rule>
+                <discovery_rule>
                     <name>プロセスごとの各種情報を取得する</name>
                     <type>0</type>
                     <snmp_community/>
                     <snmp_oid/>
-                    <key>procinfo.discovery[df_]</key>
-                    <delay>10m</delay>
-                    <status>1</status>
+                    <key>procinfo.discovery[{$PROC_NAME}]</key>
+                    <delay>60m</delay>
+                    <status>0</status>
                     <allowed_hosts/>
                     <snmpv3_contextname/>
                     <snmpv3_securityname/>
@@ -58,7 +190,7 @@
                             <snmp_community/>
                             <snmp_oid/>
                             <key>proc.cpu.util[{#PROCNAME},,,{#PROCARG}]</key>
-                            <delay>30s</delay>
+                            <delay>120s</delay>
                             <history>90d</history>
                             <trends>365d</trends>
                             <status>0</status>
@@ -109,9 +241,6 @@
                                 <application_prototype>
                                     <name>CPU</name>
                                 </application_prototype>
-                                <application_prototype>
-                                    <name>CPU</name>
-                                </application_prototype>
                             </application_prototypes>
                             <master_item/>
                         </item_prototype>
@@ -121,13 +250,13 @@
                             <snmp_community/>
                             <snmp_oid/>
                             <key>proc.mem[{#PROCNAME},,avg,{#PROCARG},rss]</key>
-                            <delay>30s</delay>
+                            <delay>120s</delay>
                             <history>90d</history>
                             <trends>365d</trends>
                             <status>0</status>
-                            <value_type>3</value_type>
+                            <value_type>0</value_type>
                             <allowed_hosts/>
-                            <units/>
+                            <units>M</units>
                             <snmpv3_contextname/>
                             <snmpv3_securityname/>
                             <snmpv3_securitylevel>0</snmpv3_securitylevel>
@@ -169,9 +298,6 @@
                             <verify_peer>0</verify_peer>
                             <verify_host>0</verify_host>
                             <application_prototypes>
-                                <application_prototype>
-                                    <name>Memory</name>
-                                </application_prototype>
                                 <application_prototype>
                                     <name>Memory</name>
                                 </application_prototype>
@@ -184,13 +310,13 @@
                             <snmp_community/>
                             <snmp_oid/>
                             <key>proc.mem[{#PROCNAME},,max,{#PROCARG},rss]</key>
-                            <delay>30s</delay>
+                            <delay>120s</delay>
                             <history>90d</history>
                             <trends>365d</trends>
                             <status>0</status>
                             <value_type>3</value_type>
                             <allowed_hosts/>
-                            <units/>
+                            <units>M</units>
                             <snmpv3_contextname/>
                             <snmpv3_securityname/>
                             <snmpv3_securitylevel>0</snmpv3_securitylevel>
@@ -235,9 +361,6 @@
                                 <application_prototype>
                                     <name>Memory</name>
                                 </application_prototype>
-                                <application_prototype>
-                                    <name>Memory</name>
-                                </application_prototype>
                             </application_prototypes>
                             <master_item/>
                         </item_prototype>
@@ -247,11 +370,11 @@
                             <snmp_community/>
                             <snmp_oid/>
                             <key>proc.mem[{#PROCNAME}_{#PROCARG}]</key>
-                            <delay>30s</delay>
+                            <delay>120s</delay>
                             <history>90d</history>
                             <trends>365d</trends>
                             <status>0</status>
-                            <value_type>3</value_type>
+                            <value_type>0</value_type>
                             <allowed_hosts/>
                             <units>%</units>
                             <snmpv3_contextname/>
@@ -299,9 +422,6 @@ last(&quot;vm.memory.size[total]&quot;))*100</params>
                                 <application_prototype>
                                     <name>Memory</name>
                                 </application_prototype>
-                                <application_prototype>
-                                    <name>Memory</name>
-                                </application_prototype>
                             </application_prototypes>
                             <master_item/>
                         </item_prototype>
@@ -311,7 +431,7 @@ last(&quot;vm.memory.size[total]&quot;))*100</params>
                             <snmp_community/>
                             <snmp_oid/>
                             <key>proc.num[{#PROCNAME},,,{#PROCARG}]</key>
-                            <delay>30s</delay>
+                            <delay>120s</delay>
                             <history>90d</history>
                             <trends>365d</trends>
                             <status>0</status>
@@ -359,9 +479,6 @@ last(&quot;vm.memory.size[total]&quot;))*100</params>
                             <verify_peer>0</verify_peer>
                             <verify_host>0</verify_host>
                             <application_prototypes>
-                                <application_prototype>
-                                    <name>プロセス監視</name>
-                                </application_prototype>
                                 <application_prototype>
                                     <name>プロセス監視</name>
                                 </application_prototype>
@@ -374,7 +491,7 @@ last(&quot;vm.memory.size[total]&quot;))*100</params>
                             <snmp_community/>
                             <snmp_oid/>
                             <key>proc.num[{#PROCNAME},,zomb,{#PROCARG}]</key>
-                            <delay>30s</delay>
+                            <delay>120s</delay>
                             <history>90d</history>
                             <trends>365d</trends>
                             <status>0</status>
@@ -425,9 +542,6 @@ last(&quot;vm.memory.size[total]&quot;))*100</params>
                                 <application_prototype>
                                     <name>プロセス監視</name>
                                 </application_prototype>
-                                <application_prototype>
-                                    <name>プロセス監視</name>
-                                </application_prototype>
                             </application_prototypes>
                             <master_item/>
                         </item_prototype>
@@ -437,11 +551,11 @@ last(&quot;vm.memory.size[total]&quot;))*100</params>
                             <snmp_community/>
                             <snmp_oid/>
                             <key>procinfo.fd[{#PROCNAME},{#PROCARG}]</key>
-                            <delay>30s</delay>
+                            <delay>120s</delay>
                             <history>90d</history>
                             <trends>0</trends>
                             <status>0</status>
-                            <value_type>1</value_type>
+                            <value_type>4</value_type>
                             <allowed_hosts/>
                             <units/>
                             <snmpv3_contextname/>
@@ -497,7 +611,7 @@ last(&quot;vm.memory.size[total]&quot;))*100</params>
                             <snmp_community/>
                             <snmp_oid/>
                             <key>procinfo.limits.mof[{#PROCNAME},{#PROCARG}]</key>
-                            <delay>30s</delay>
+                            <delay>120s</delay>
                             <history>90d</history>
                             <trends>0</trends>
                             <status>0</status>
@@ -557,7 +671,7 @@ last(&quot;vm.memory.size[total]&quot;))*100</params>
                             <snmp_community/>
                             <snmp_oid/>
                             <key>procinfo.openfiles[{#PROCNAME},{#PROCARG}]</key>
-                            <delay>30s</delay>
+                            <delay>120s</delay>
                             <history>90d</history>
                             <trends>365d</trends>
                             <status>0</status>
@@ -614,7 +728,7 @@ last(&quot;vm.memory.size[total]&quot;))*100</params>
                     </item_prototypes>
                     <trigger_prototypes>
                         <trigger_prototype>
-                            <expression>{Template procinfo:procinfo.openfiles[{#PROCNAME},{#PROCARG}].last()}&gt;{$INFO_OF}</expression>
+                            <expression>{Template proc:procinfo.openfiles[{#PROCNAME},{#PROCARG}].last()}&gt;{$INFO_OF}</expression>
                             <recovery_mode>0</recovery_mode>
                             <recovery_expression/>
                             <name>Open files {$INFO_OF}% overed {#PROCNAME} {#PROCARG}</name>
@@ -624,6 +738,22 @@ last(&quot;vm.memory.size[total]&quot;))*100</params>
                             <status>0</status>
                             <priority>1</priority>
                             <description/>
+                            <type>0</type>
+                            <manual_close>0</manual_close>
+                            <dependencies/>
+                            <tags/>
+                        </trigger_prototype>
+                        <trigger_prototype>
+                            <expression>{Template proc:proc.num[{#PROCNAME},,,{#PROCARG}].last()}=0</expression>
+                            <recovery_mode>0</recovery_mode>
+                            <recovery_expression/>
+                            <name>{HOST.NAME} {#PROCNAME} {#PROCARG} process was terminated</name>
+                            <correlation_mode>0</correlation_mode>
+                            <correlation_tag/>
+                            <url/>
+                            <status>0</status>
+                            <priority>3</priority>
+                            <description>This is triggered when the number of {#PROCNAME} {#PROCARG} process was equal to 0</description>
                             <type>0</type>
                             <manual_close>0</manual_close>
                             <dependencies/>
@@ -657,7 +787,7 @@ last(&quot;vm.memory.size[total]&quot;))*100</params>
                                     <calc_fnc>2</calc_fnc>
                                     <type>0</type>
                                     <item>
-                                        <host>Template procinfo</host>
+                                        <host>Template proc</host>
                                         <key>proc.cpu.util[{#PROCNAME},,,{#PROCARG}]</key>
                                     </item>
                                 </graph_item>
@@ -689,7 +819,7 @@ last(&quot;vm.memory.size[total]&quot;))*100</params>
                                     <calc_fnc>2</calc_fnc>
                                     <type>0</type>
                                     <item>
-                                        <host>Template procinfo</host>
+                                        <host>Template proc</host>
                                         <key>proc.mem[{#PROCNAME},,avg,{#PROCARG},rss]</key>
                                     </item>
                                 </graph_item>
@@ -721,7 +851,7 @@ last(&quot;vm.memory.size[total]&quot;))*100</params>
                                     <calc_fnc>2</calc_fnc>
                                     <type>0</type>
                                     <item>
-                                        <host>Template procinfo</host>
+                                        <host>Template proc</host>
                                         <key>proc.mem[{#PROCNAME}_{#PROCARG}]</key>
                                     </item>
                                 </graph_item>
@@ -753,7 +883,7 @@ last(&quot;vm.memory.size[total]&quot;))*100</params>
                                     <calc_fnc>4</calc_fnc>
                                     <type>0</type>
                                     <item>
-                                        <host>Template procinfo</host>
+                                        <host>Template proc</host>
                                         <key>proc.mem[{#PROCNAME},,max,{#PROCARG},rss]</key>
                                     </item>
                                 </graph_item>
@@ -785,7 +915,7 @@ last(&quot;vm.memory.size[total]&quot;))*100</params>
                                     <calc_fnc>2</calc_fnc>
                                     <type>0</type>
                                     <item>
-                                        <host>Template procinfo</host>
+                                        <host>Template proc</host>
                                         <key>proc.num[{#PROCNAME},,,{#PROCARG}]</key>
                                     </item>
                                 </graph_item>
@@ -817,7 +947,7 @@ last(&quot;vm.memory.size[total]&quot;))*100</params>
                                     <calc_fnc>2</calc_fnc>
                                     <type>0</type>
                                     <item>
-                                        <host>Template procinfo</host>
+                                        <host>Template proc</host>
                                         <key>proc.num[{#PROCNAME},,zomb,{#PROCARG}]</key>
                                     </item>
                                 </graph_item>
@@ -850,7 +980,7 @@ last(&quot;vm.memory.size[total]&quot;))*100</params>
                     <snmp_community/>
                     <snmp_oid/>
                     <key>procinfo.discovery[processname_pattern]</key>
-                    <delay>30s</delay>
+                    <delay>60m</delay>
                     <status>1</status>
                     <allowed_hosts/>
                     <snmpv3_contextname/>
@@ -904,6 +1034,10 @@ last(&quot;vm.memory.size[total]&quot;))*100</params>
                 <macro>
                     <macro>{$INFO_OF}</macro>
                     <value>80</value>
+                </macro>
+                <macro>
+                    <macro>{$PROC_NAME}</macro>
+                    <value>process name</value>
                 </macro>
             </macros>
             <templates/>

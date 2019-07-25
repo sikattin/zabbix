@@ -76,7 +76,7 @@
                             <snmpv3_authpassphrase/>
                             <snmpv3_privprotocol>0</snmpv3_privprotocol>
                             <snmpv3_privpassphrase/>
-                            <params>last(&quot;vfs.dev.read[#{DEVNAME},ops]&quot;,0)+last(&quot;vfs.dev.write[#{DEVNAME},ops]&quot;,0)</params>
+                            <params>last(&quot;vfs.dev.read[{#DEVNAME},ops]&quot;,0)+last(&quot;vfs.dev.write[{#DEVNAME},ops]&quot;,0)</params>
                             <ipmi_sensor/>
                             <authtype>0</authtype>
                             <username/>
