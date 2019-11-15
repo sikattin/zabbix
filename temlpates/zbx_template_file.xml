@@ -114,7 +114,17 @@
                         <conditions/>
                     </filter>
                     <lifetime>1h</lifetime>
-                    <description/>
+                    <description>vfs.file.find[search_path,matching pattern,&lt;maxdepth&gt;]&#13;
+&#13;
+search_path - Do finding files under this path&#13;
+matching pattern - file name. available wildcards.&#13;
+maxdepth - if specified, do not recursively search. to understand detail, reference a manual of find(1).&#13;
+&#13;
+Description:&#13;
+  Find files by matching pattern of shell under search_path.&#13;
+&#13;
+Return:&#13;
+  List of files with absolute path.</description>
                     <item_prototypes>
                         <item_prototype>
                             <name>Checksum of {#FILEPATH}</name>
