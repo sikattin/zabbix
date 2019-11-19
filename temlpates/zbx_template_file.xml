@@ -89,7 +89,7 @@
                     <type>0</type>
                     <snmp_community/>
                     <snmp_oid/>
-                    <key>vfs.file.find[{$SEARCH_PATH},{$PATTERN}]</key>
+                    <key>vfs.file.find[{$SEARCH_PATH},{$PATTERN},{$MAXDEPTH}]</key>
                     <delay>1h</delay>
                     <status>1</status>
                     <allowed_hosts/>
@@ -118,7 +118,7 @@
 &#13;
 search_path - Do finding files under this path&#13;
 matching pattern - file name. available wildcards.&#13;
-maxdepth - if specified, do not recursively search. to understand detail, reference a manual of find(1).&#13;
+maxdepth - if specified or non value 0, do not recursively search. to understand detail, reference a manual of find(1).&#13;
 &#13;
 Description:&#13;
   Find files by matching pattern of shell under search_path.&#13;
@@ -236,6 +236,10 @@ Return:&#13;
                 <macro>
                     <macro>{$SEARCH_PATH}</macro>
                     <value>/usr/local/lib</value>
+                </macro>
+                <macro>
+                    <macro>{$MAXDEPTH}</macro>
+                    <value>0</value>
                 </macro>
             </macros>
             <templates/>
