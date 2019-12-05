@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>4.0</version>
-    <date>2019-11-15T08:02:59Z</date>
+    <date>2019-12-05T03:20:39Z</date>
     <groups>
         <group>
             <name>Templates</name>
@@ -9,8 +9,8 @@
     </groups>
     <templates>
         <template>
-            <template>Template Module File</template>
-            <name>Template Module File</name>
+            <template>Template File</template>
+            <name>Template File</name>
             <description/>
             <groups>
                 <group>
@@ -51,7 +51,7 @@
                     <publickey/>
                     <privatekey/>
                     <port/>
-                    <description>Core dumpfile located path</description>
+                    <description/>
                     <inventory_link>0</inventory_link>
                     <applications>
                         <application>
@@ -89,7 +89,7 @@
                     <type>0</type>
                     <snmp_community/>
                     <snmp_oid/>
-                    <key>vfs.file.find[{$SEARCH_PATH},{$PATTERN},{$MAXDEPTH}]</key>
+                    <key>vfs.file.discovery[{$SEARCH_PATH},{$PATTERN},{$MAXDEPTH}]</key>
                     <delay>1h</delay>
                     <status>1</status>
                     <allowed_hosts/>
@@ -114,14 +114,14 @@
                         <conditions/>
                     </filter>
                     <lifetime>1h</lifetime>
-                    <description>vfs.file.find[search_path,matching pattern,&lt;maxdepth&gt;]&#13;
+                    <description>vfs.file.discovery[search_path,matching pattern,&lt;maxdepth&gt;]&#13;
 &#13;
 search_path - Do finding files under this path&#13;
-matching pattern - file name. available wildcards.&#13;
-maxdepth - if specified or non value 0, do not recursively search. to understand detail, reference a manual of find(1).&#13;
+matching pattern - file name. available wildcards pattern matching&#13;
+maxdepth(optional) - if specified , done not recursively search or done recursively searched. To understand detail, reference a manual of find(1).&#13;
 &#13;
 Description:&#13;
-  Find files by matching pattern of shell under search_path.&#13;
+  Find files by matching pattern of shell under the search_path.&#13;
 &#13;
 Return:&#13;
   List of files with absolute path.</description>
@@ -189,7 +189,7 @@ Return:&#13;
                     </item_prototypes>
                     <trigger_prototypes>
                         <trigger_prototype>
-                            <expression>{Template Module File:vfs.file.cksum[{#FILEPATH}].diff()}=1</expression>
+                            <expression>{Template File:vfs.file.cksum[{#FILEPATH}].diff()}=1</expression>
                             <recovery_mode>0</recovery_mode>
                             <recovery_expression/>
                             <name>{#FILEPATH} has been changed on {HOST.NAME}</name>
@@ -202,7 +202,12 @@ Return:&#13;
                             <type>0</type>
                             <manual_close>0</manual_close>
                             <dependencies/>
-                            <tags/>
+                            <tags>
+                                <tag>
+                                    <tag>NoRecovery</tag>
+                                    <value/>
+                                </tag>
+                            </tags>
                         </trigger_prototype>
                     </trigger_prototypes>
                     <graph_prototypes/>
@@ -230,16 +235,16 @@ Return:&#13;
             <httptests/>
             <macros>
                 <macro>
+                    <macro>{$MAXDEPTH}</macro>
+                    <value>1</value>
+                </macro>
+                <macro>
                     <macro>{$PATTERN}</macro>
-                    <value>*.so</value>
+                    <value>*.conf</value>
                 </macro>
                 <macro>
                     <macro>{$SEARCH_PATH}</macro>
-                    <value>/usr/local/lib</value>
-                </macro>
-                <macro>
-                    <macro>{$MAXDEPTH}</macro>
-                    <value>0</value>
+                    <value>/etc</value>
                 </macro>
             </macros>
             <templates/>
@@ -248,7 +253,7 @@ Return:&#13;
     </templates>
     <triggers>
         <trigger>
-            <expression>{Template Module File:vfs.file.coredump.nodata(1m)}=0</expression>
+            <expression>{Template File:vfs.file.coredump.nodata(1m)}=0</expression>
             <recovery_mode>0</recovery_mode>
             <recovery_expression/>
             <name>Coredump was generated on {HOST.NAME}</name>
@@ -262,10 +267,6 @@ Return:&#13;
             <manual_close>0</manual_close>
             <dependencies/>
             <tags>
-                <tag>
-                    <tag>Dev</tag>
-                    <value/>
-                </tag>
                 <tag>
                     <tag>Type</tag>
                     <value>File</value>
